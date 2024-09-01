@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TV App Launcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="introOverlay" class="intro-overlay"></div>
+
+    <div class="app-launcher">
+        <div class="header">
+            <input type="text" id="search" class="search-bar" placeholder="Search apps...">
+        </div>
+
+        <section>
+            <h2>Recently Opened</h2>
+            <div id="history" class="app-history"></div>
+        </section>
+
+        <section>
+            <h2>All Apps</h2>
+            <div id="appGrid" class="app-grid"></div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const appGrid = document.getElementById('appGrid');
+            const historyContainer = document.getElementById('history');
+            const searchInput = document.getElementById('search');
+            const introOverlay = document.getElementById('introOverlay');
+            const historyKey = "appLauncherHistory";
+
+            let history = JSON.parse(localStorage.getItem(historyKey)) || [];
+
+            // Animasi Intro
+            setTimeout(() => {
+                introOverlay.style.opacity = 0;
+                setTimeout(() => introOverlay.style.display = 'none', 500);
+            }, 1000);
+
+            // Load Apps dari JSON
+            fetch('list.json')
+                .then(response => response.json())
+                .then(data => {
+                    displayApps(data);
+                })
+                .catch(error => console.error('Error loading apps:', error));
+
+            // Menampilkan Apps
+            function displayApps(apps) {
+                appGrid.innerHTML = '';
+                apps.forEach(app => {
+                    const appItem = createAppItem(app);
+                    appGrid.appendChild(appItem);
+                });
+                displayHistory();
+            }
+
+            // Menampilkan History
+            function displayHistory() {
+                historyContainer.innerHTML = '';
+                history.slice(0, 4).forEach(app => {
+                    const appItem = createAppItem(app);
+                    historyContainer.appendChild(appItem);
+                });
+            }
+
+            // Membuat App Item
+            function createAppItem(app) {
+                const appItem = document.createElement('div');
+                appItem.className = 'app-item';
+                appItem.innerHTML = `
+                    <img src="${app.img}" alt="${app.title}" oncontextmenu="return false;" onmousedown="return false;" onselectstart="return false;" draggable="false">
+                    <h3>${app.title}</h3>
+                `;
+                appItem.addEventListener('click', () => {
+                    appClicked(app);
+                });
+                return appItem;
+            }
+
+            // Fungsi Ketika Aplikasi Diklik
+            function appClicked(app) {
+                addHistory(app);
+                animateOpen(() => {
+                    window.open(app.url, '_blank');
+                });
+            }
+
+            // Menambah History
+            function addHistory(app) {
+                history = [app, ...history.filter(a => a.title !== app.title)];
+                localStorage.setItem(historyKey, JSON.stringify(history));
+                displayHistory();
+            }
+
+            // Fungsi Pencarian
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                fetch('list.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const filteredApps = data.filter(app => app.title.toLowerCase().includes(searchTerm));
+                        displayApps(filteredApps);
+                    });
+            });
+
+            // Animasi Membuka Aplikasi
+            function animateOpen(callback) {
+                introOverlay.style.display = 'block';
+                introOverlay.style.opacity = 1;
+                setTimeout(() => {
+                    callback();
+                    setTimeout(() => {
+                        introOverlay.style.opacity = 0;
+                        setTimeout(() => introOverlay.style.display = 'none', 500);
+                    }, 500);
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
