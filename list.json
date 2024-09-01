@@ -1,0 +1,72 @@
+[
+    {
+        "title": "Netflix",
+        "img": "neflix.png",
+        "url": "https://netflix.com"
+    },
+    {
+        "title": "Disney+",
+        "img": "disney.png",
+        "url": "https://www.hotstar.com/"
+    },
+    {
+        "title": "Prime Video",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
+        "url": "https://www.primevideo.com/"
+    },
+    {
+        "title": "Spotify",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Spotify_logo_with_text.svg/640px-Spotify_logo_with_text.svg.png",
+        "url": "https://open.spotify.com/"
+    },
+    {
+        "title": "YouTube",
+        "img": "https://www.edigitalagency.com.au/wp-content/uploads/Youtube-logo-white-png.png",
+        "url": "https://youtube.com/"
+    },
+    {
+        "title": "Tiktok",
+        "img": "tt.png",
+        "url": "https://www.tiktok.com/"
+    },
+    {
+        "title": "Apple TV+",
+        "img": "https://is1-ssl.mzstatic.com/image/thumb/oEYYIjc6-3zT0jgpyUiIaw/1x40at.png",
+        "url": "https://tv.apple.com/"
+    },
+    {
+        "title": "Bstation",
+        "img": "bs.png",
+        "url": "https://www.bilibili.tv/"
+    },
+    {
+        "title": "Vidio",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Logo_Vidio.png/1024px-Logo_Vidio.png",
+        "url": "https://m.vidio.com/"
+    },
+    {
+        "title": "HBO Max",
+        "img": "https://www.max.com/img/max-h-w-l.svg",
+        "url": "https://www.max.com/"
+    },
+    {
+        "title": "Crunchyroll",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Crunchyroll_Logo.png/669px-Crunchyroll_Logo.png",
+        "url": "https://www.crunchyroll.com/"
+    },
+    {
+        "title": "Plex",
+        "img": "https://www.plex.tv/wp-content/themes/plex/assets/img/plex-logo.svg",
+        "url": "https://www.plex.tv"
+    },
+    {
+        "title": "Twitch",
+        "img": "https://static.vecteezy.com/system/resources/previews/018/930/502/non_2x/twitch-logo-twitch-icon-transparent-free-png.png",
+        "url": "https://m.twitch.tv/"
+    },
+    {
+        "title": "hulu",
+        "img": "https://download.logo.wine/logo/Hulu/Hulu-Logo.wine.png",
+        "url": "https://www.hulu.com"
+    }
+]
